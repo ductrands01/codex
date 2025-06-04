@@ -362,6 +362,15 @@ if (cli.flags.free) {
   }
 }
 
+if (provider.toLowerCase() !== "openai") {
+  const envVarName = `${provider.toUpperCase()}_API_KEY`;
+  const envApiKey = process.env[envVarName];
+
+  if (envApiKey) {
+    apiKey = envApiKey;
+  }
+}
+
 // Set of providers that don't require API keys
 const NO_API_KEY_REQUIRED = new Set(["ollama"]);
 
